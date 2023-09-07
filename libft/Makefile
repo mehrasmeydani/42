@@ -16,9 +16,9 @@ SRCS		= ${addprefix ${PRE}, ${SRC}}
 
 OBJS		= ${SRCS:.c=.o}
 
-PRE			= ./srcs/
+PRE			= ./
 
-HEAD		= ./includes/
+HEAD		= ./
 
 NAME		= libft.a
 
@@ -47,7 +47,13 @@ clean:
 
 fclean:		clean
 			rm -f ${NAME}
+			rm -f libft.so
+			rm -f a.out
 
 re:			fclean all
+
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS)
 
 .PHONY:		all clean fclean re

@@ -19,5 +19,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (nmemb * size == 0 || nmemb * size > 2147483648)
 		return (NULL);
 	out = (char *)malloc(size * nmemb);
+	ft_bzero(out, nmemb);
 	return ((void *)out);
 }

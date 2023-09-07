@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*out;
 
 	lens = ft_strlen(s);
-	if (start > lens)
+	if (start > lens || len * lens == 0)
 		return (NULL);
 	if (len + start > lens)
 		out = (char *)malloc((lens - start + 1) * (char));
@@ -28,5 +28,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!out)
 		return (out);
 	i = start;
-	while (s[i] && i )
+	while (s[i + start] && i < len)
+	{
+		out[i] = s[i + start];
+		i++;
+	}
+	out[i] = '\0';
+	return (out);
 }

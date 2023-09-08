@@ -32,8 +32,7 @@ GCC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
 
-all: 		${NAME}
-
+all:			${NAME}
 .c.o:
 			${GCC} ${CFLAGS} -c -I ${HEAD} $< -o ${<:.c=.o}
 

@@ -11,29 +11,33 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int	ft_atoi(const char *nptr)
 {
 	int	i;
 
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
-		nptr++;
 	i = 0;
-	if (nptr[0] != '-')
+	while (*nptr == 32 || (*nptr >= 9 && *nptr <= 13))
+		nptr++;
+	if (*nptr == '-')
 	{
+		nptr++;
 		while (*nptr >= '0' && *nptr <= '9')
 		{
 			i *= 10;
-			i = i + (*nptr - 48);
+			i -= (*nptr - 48);
 			nptr++;
 		}
 	}
 	else
 	{
+		if (*nptr == '+')
+			nptr++;
 		while (*nptr >= '0' && *nptr <= '9')
 		{
 			i *= 10;
-			i = i - (*nptr - 48);
+			i += (*nptr - 48);
 			nptr++;
 		}
 	}

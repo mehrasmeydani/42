@@ -17,13 +17,16 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	char	*out;
 
 	if (nmemb * size == 0 || (nmemb * size) / size != nmemb)
-		nmemb = size = 1;
+	{
+		nmemb = 1;
+		size = 1;
+	}
 	if (size >= 1 && size <= 8)
 	{
 		out = (char *)malloc(size * nmemb);
 		ft_bzero(out, nmemb * size);
 	}
-	else 
+	else
 		return (NULL);
 	return ((void *)out);
 }

@@ -47,8 +47,7 @@ void	ft_sort_string_tab(char **tab)
 		i++;
 	}
 }
-
-
+/*
 int cmp_strcmp(char *s1, char *s2)
 {
     return strcmp(s1, s2);
@@ -75,11 +74,12 @@ int main()
         "Model",
         "",
         "test",
-        "example",*/
+        "example",
         NULL // Null-terminated array
     };
 
-    int num_tests = 1;//sizeof(test_strings) / sizeof(test_strings[0]) - 1; // Excluding NULL
+    int num_tests = 1;//sizeof(test_strings) 
+    / sizeof(test_strings[0]) - 1; // Excluding NULL
 
     printf("Original Array:\n");
     for (int i = 0; i < num_tests; i++)
@@ -97,3 +97,4 @@ int main()
 
     return 0;
 }
+*/

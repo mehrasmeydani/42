@@ -21,60 +21,8 @@ ft_strnstr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_atoi:       [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_calloc:     [OK] [OK] [OK] [OK] [OK] 
 ft_strdup:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_substr:     [OK] [FAILED] [OK] [OK] [FAILED] [OK] [OK] [OK] {not protected}[CRASH] 
-[fail]: your substr does not work with valid input
-Test code:
-	char *str = "i just want this part #############";
-	size_t size = 20;
-	char *ret = ft_substr(str, 5, size);
-
-	if (!strncmp(ret, str + 5, size))
-	{
-		free(ret);
-		exit(TEST_SUCCESS);
-	}
-	free(ret);
-	exit(TEST_FAILED);
-
-Diffs:
-      substr: |t want this part ###|
-   ft_substr: |[OK] t this part ###|
-
-[fail]: your substr does not set \0 to the end of the string
-Test code:
-	char str[] = "i just want this part #############";
-	size_t size = 20;
-
-	char *ret = ft_substr(str, 5, size);
-	str[size + 5] = 0;
-	if (!memcmp(ret, str + 5, size + 1))
-	{
-		free(ret);
-		exit(TEST_SUCCESS);
-	}
-	free(ret);
-	exit(TEST_FAILED);
-
-Diffs:
-      substr: |t want this part ###|
-   ft_substr: |AAAAAt this part ###|
-
-[crash]: your substr does not work when start >= ft_strlen(s)
-Test code:
-	char *str = "01234";
-	size_t size = 10;
-	char *ret = ft_substr(str, 10, size);
-
-	if (!strncmp(ret, "", 1))
-	{
-		free(ret);
-		exit(TEST_SUCCESS);
-	}
-	free(ret);
-	exit(TEST_FAILED);
-
-
-ft_strjoin:    [CRASH] [FAILED] [FAILED] [OK] [FAILED] {not protected}
+ft_substr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}[OK] 
+ft_strjoin:    [CRASH] [CRASH] [FAILED] [OK] [FAILED] {not protected}
 [crash]: your strjoin does not work with basic input
 Test code:
 	char *s1 = "my favorite animal is";
@@ -87,7 +35,7 @@ Test code:
 	exit(TEST_FAILED);
 
 
-[fail]: your strjoin does not allocate the memory
+[crash]: your strjoin does not allocate the memory
 Test code:
 	char *s1 = "my favorite animal is";
 	char *s2 = " ";
@@ -104,10 +52,6 @@ Test code:
 	free(res);
 	exit(TEST_FAILED);
 
-Diffs:
-     strjoin: |my favorite animal is the nyancat|
-  ft_strjoin: |ze = 10;
-	char *ret = ft_substr(str, 10,|
 
 [fail]: your strjoin does not work with overlap input
 Test code:
@@ -121,10 +65,7 @@ Test code:
 
 Diffs:
      strjoin: |s my favorite animal is |
-  ft_strjoin: |it(TEST_SUCCESS);
-	}
-	free(ret);
-	exit(T|
+  ft_strjoin: |[CRASH] in:    my favo|
 
 [fail]: your strjoin does not set \0 to the end of the string
 Test code:
@@ -158,4 +99,3 @@ ft_lstdelone:  [MISSING]
 ft_lstclear:   [MISSING]
 ft_lstiter:    [MISSING]
 ft_lstmap:     [MISSING]
-ft_strcpy:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 

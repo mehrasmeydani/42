@@ -15,7 +15,6 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	lens;
-	size_t	i;
 	char	*out;
 
 	if (!s)
@@ -23,24 +22,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	lens = ft_strlen(s);
 	if (start > lens || len * lens == 0)
 	{
-		out = (char *)malloc(1 * sizeof(char));
-		if (!out)
-			return (out);
-		out[0] = '\0';
+		out = (char *)ft_calloc(1, sizeof(char));
 		return (out);
 	}
 	if (len + start > lens)
-		out = (char *)malloc((lens - start + 1) * sizeof(char));
+		out = (char *)ft_calloc((lens - start + 1), sizeof(char));
 	else
-		out = (char *)malloc((len + 1) * sizeof(char));
+		out = (char *)ft_calloc((len + 1), sizeof(char));
 	if (!out)
 		return (out);
-	i = 0;
-	while (s[i + start] && i < len)
-	{
-		out[i] = s[i + start];
-		i++;
-	}
-	out[i] = '\0';
+	ft_strlcat(out, s + start, len + 1);
 	return (out);
 }

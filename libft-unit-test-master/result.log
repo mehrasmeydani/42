@@ -1,0 +1,202 @@
+ft_memset:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_bzero:      [OK] [OK] [OK] [OK] 
+ft_memcpy:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_memmove:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_memchr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_memcmp:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strlen:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_isalpha:    [OK] 
+ft_isdigit:    [OK] 
+ft_isalnum:    [OK] 
+ft_isascii:    [OK] 
+ft_isprint:    [OK] 
+ft_toupper:    [OK] 
+ft_tolower:    [OK] 
+ft_strchr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strrchr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strncmp:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strlcpy:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strlcat:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_strnstr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_atoi:       [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_calloc:     [OK] [CRASH] [FAILED] [FAILED] [OK] 
+[crash]: you didn't protect your malloc return
+Test code:
+	char *ptr;
+
+	ptr = ft_calloc(4, 20);
+	if (!ptr)
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+
+[fail]: your calloc don't work with empty string
+Test code:
+	int size = 8539;
+
+	void * d1 = ft_calloc(size, sizeof(int));
+	void * d2 = calloc(size, sizeof(int));
+	if (memcmp(d1, d2, size * sizeof(int)))
+		exit(TEST_FAILED);
+	free(d1);
+	free(d2);
+	exit(TEST_SUCCESS);
+
+Diffs:
+
+
+[fail]: your calloc don't work with 0 size
+Test code:
+	void *str = ft_calloc(0, 0);
+
+	if (str == ((void*)0))
+		exit(TEST_FAILED);
+	free(str);
+	exit(TEST_SUCCESS);
+
+Diffs:
+
+
+ft_strdup:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_substr:     [OK] [FAILED] [OK] [OK] [FAILED] [OK] [OK] [OK] {not protected}[CRASH] 
+[fail]: your substr does not work with valid input
+Test code:
+	char *str = "i just want this part #############";
+	size_t size = 20;
+	char *ret = ft_substr(str, 5, size);
+
+	if (!strncmp(ret, str + 5, size))
+	{
+		free(ret);
+		exit(TEST_SUCCESS);
+	}
+	free(ret);
+	exit(TEST_FAILED);
+
+Diffs:
+      substr: |t want this part ###|
+   ft_substr: |îY|
+
+[fail]: your substr does not set \0 to the end of the string
+Test code:
+	char str[] = "i just want this part #############";
+	size_t size = 20;
+
+	char *ret = ft_substr(str, 5, size);
+	str[size + 5] = 0;
+	if (!memcmp(ret, str + 5, size + 1))
+	{
+		free(ret);
+		exit(TEST_SUCCESS);
+	}
+	free(ret);
+	exit(TEST_FAILED);
+
+Diffs:
+      substr: |t want this part ###|
+   ft_substr: |AAAAAt this part ###|
+
+[crash]: your substr does not work when start >= ft_strlen(s)
+Test code:
+	char *str = "01234";
+	size_t size = 10;
+	char *ret = ft_substr(str, 10, size);
+
+	if (!strncmp(ret, "", 1))
+	{
+		free(ret);
+		exit(TEST_SUCCESS);
+	}
+	free(ret);
+	exit(TEST_FAILED);
+
+
+ft_strjoin:    [FAILED] [FAILED] [FAILED] [OK] [FAILED] {not protected}
+[fail]: your strjoin does not work with basic input
+Test code:
+	char *s1 = "my favorite animal is";
+	char *s2 = " ";
+	char *s3 = "the nyancat";
+	char *res = ft_strjoin(ft_strjoin(s1, s2), s3);
+
+	if (!strcmp(res, "my favorite animal is the nyancat"))
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+Diffs:
+     strjoin: |my favorite animal is the nyancat|
+  ft_strjoin: |[CRASH] tected}(TEST_SUCCESS);
+|
+
+[fail]: your strjoin does not allocate the memory
+Test code:
+	char *s1 = "my favorite animal is";
+	char *s2 = " ";
+	char *s3 = "the nyancat";
+	char *tmp = ft_strjoin(s1, s2);
+	char *res = ft_strjoin(tmp, s3);
+
+	free(tmp);
+	if (!strcmp(res, "my favorite animal is the nyancat"))
+	{
+		free(res);
+		exit(TEST_SUCCESS);
+	}
+	free(res);
+	exit(TEST_FAILED);
+
+Diffs:
+     strjoin: |my favorite animal is the nyancat|
+  ft_strjoin: |	free(ret);
+		exit(TEST_SUCCESS);
+	}
+	fr|
+
+[fail]: your strjoin does not work with overlap input
+Test code:
+	char *s1 = "my favorite animal is ";
+	char *s2 = s1 + 20;
+	char *res = ft_strjoin(s2, s1);
+
+	if (!strcmp(res, "s my favorite animal is "))
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+Diffs:
+     strjoin: |s my favorite animal is |
+  ft_strjoin: |;
+my favorite animal i|
+
+[fail]: your strjoin does not set \0 to the end of the string
+Test code:
+	char *s1 = "where is my ";
+	char *s2 = "malloc ???";
+	char *s3 = "where is my malloc ???";
+
+	char *res = ft_strjoin(s1, s2);
+	if (!strcmp(res, s3))
+		exit(TEST_SUCCESS);
+	exit(TEST_FAILED);
+
+Diffs:
+     strjoin: |where is my malloc ???|
+  ft_strjoin: |AAAAAAAAAAAAAAAAAAAAAAA|
+
+ft_strtrim:    [MISSING]
+ft_split:      [MISSING]
+ft_itoa:       [MISSING]
+ft_strmapi:    [MISSING]
+ft_putchar_fd: [MISSING]
+ft_putstr_fd:  [MISSING]
+ft_putendl_fd: [MISSING]
+ft_putnbr_fd:  [MISSING]
+ft_lstnew:     [MISSING]
+ft_lstadd_front: [MISSING]
+ft_lstsize:    [MISSING]
+ft_lstlast:    [MISSING]
+ft_lstadd_back:[MISSING]
+ft_lstdelone:  [MISSING]
+ft_lstclear:   [MISSING]
+ft_lstiter:    [MISSING]
+ft_lstmap:     [MISSING]
+ft_strcpy:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 

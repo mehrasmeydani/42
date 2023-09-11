@@ -19,44 +19,7 @@ ft_strlcpy:    [OK] [OK] [OK] [OK] [OK] [OK] [OK]
 ft_strlcat:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strnstr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_atoi:       [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_calloc:     [OK] [CRASH] [FAILED] [FAILED] [OK] 
-[crash]: you didn't protect your malloc return
-Test code:
-	char *ptr;
-
-	ptr = ft_calloc(4, 20);
-	if (!ptr)
-		exit(TEST_SUCCESS);
-	exit(TEST_FAILED);
-
-
-[fail]: your calloc don't work with empty string
-Test code:
-	int size = 8539;
-
-	void * d1 = ft_calloc(size, sizeof(int));
-	void * d2 = calloc(size, sizeof(int));
-	if (memcmp(d1, d2, size * sizeof(int)))
-		exit(TEST_FAILED);
-	free(d1);
-	free(d2);
-	exit(TEST_SUCCESS);
-
-Diffs:
-
-
-[fail]: your calloc don't work with 0 size
-Test code:
-	void *str = ft_calloc(0, 0);
-
-	if (str == ((void*)0))
-		exit(TEST_FAILED);
-	free(str);
-	exit(TEST_SUCCESS);
-
-Diffs:
-
-
+ft_calloc:     [OK] [OK] [OK] [OK] [OK] 
 ft_strdup:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_substr:     [OK] [FAILED] [OK] [OK] [FAILED] [OK] [OK] [OK] {not protected}[CRASH] 
 [fail]: your substr does not work with valid input
@@ -75,7 +38,7 @@ Test code:
 
 Diffs:
       substr: |t want this part ###|
-   ft_substr: |ÓY|
+   ft_substr: |[OK] t this part ###|
 
 [fail]: your substr does not set \0 to the end of the string
 Test code:
@@ -111,8 +74,8 @@ Test code:
 	exit(TEST_FAILED);
 
 
-ft_strjoin:    [FAILED] [FAILED] [FAILED] [OK] [FAILED] {not protected}
-[fail]: your strjoin does not work with basic input
+ft_strjoin:    [CRASH] [FAILED] [FAILED] [OK] [FAILED] {not protected}
+[crash]: your strjoin does not work with basic input
 Test code:
 	char *s1 = "my favorite animal is";
 	char *s2 = " ";
@@ -123,10 +86,6 @@ Test code:
 		exit(TEST_SUCCESS);
 	exit(TEST_FAILED);
 
-Diffs:
-     strjoin: |my favorite animal is the nyancat|
-  ft_strjoin: |[CRASH] tected}(TEST_SUCCESS);
-|
 
 [fail]: your strjoin does not allocate the memory
 Test code:
@@ -147,10 +106,8 @@ Test code:
 
 Diffs:
      strjoin: |my favorite animal is the nyancat|
-  ft_strjoin: |	free(ret);
-		exit(TEST_SUCCESS);
-	}
-	fr|
+  ft_strjoin: |ze = 10;
+	char *ret = ft_substr(str, 10,|
 
 [fail]: your strjoin does not work with overlap input
 Test code:
@@ -164,8 +121,10 @@ Test code:
 
 Diffs:
      strjoin: |s my favorite animal is |
-  ft_strjoin: |;
-my favorite animal i|
+  ft_strjoin: |it(TEST_SUCCESS);
+	}
+	free(ret);
+	exit(T|
 
 [fail]: your strjoin does not set \0 to the end of the string
 Test code:

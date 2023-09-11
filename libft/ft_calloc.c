@@ -24,6 +24,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (size >= 1 && size <= 8)
 	{
 		out = (char *)malloc(size * nmemb);
+		if (!out)
+			return (out);
 		ft_bzero(out, nmemb * size);
 	}
 	else

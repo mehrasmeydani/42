@@ -20,6 +20,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	lens = ft_strlen(s);
+	len = (unsigned int)len;
 	if (start > lens || len * lens == 0)
 	{
 		out = (char *)ft_calloc(1, sizeof(char));

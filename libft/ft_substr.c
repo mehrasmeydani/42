@@ -33,6 +33,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		out = (char *)ft_calloc((len + 1), sizeof(char));
 	if (!out)
 		return (out);
-	ft_strlcat(out, s + start, len + 1);
+	ft_strlcpy(out, s + start, len + 1);
 	return (out);
 }

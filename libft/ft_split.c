@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:25:17 by codespace         #+#    #+#             */
-/*   Updated: 2023/09/13 19:05:45 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/13 21:53:06 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,14 @@ static char	*skip(char *str, char *charset, int *len)
 	return (str);
 }
 
+static char	**set_free(char **out, int i)
+{
+	while (--i >= 0)
+		free(out[i]);
+	free(out);
+	return (NULL);
+}
+
 char	**ft_split(char *str, char c)
 {
 	int		len;
@@ -83,12 +91,7 @@ char	**ft_split(char *str, char c)
 		str = skip(&str[len], &c, &len);
 		out[i] = (char *)malloc((len + 1) * sizeof(char));
 		if (!out[i])
-		{
-			while (--i >= 0)
-				free(out[i]);
-			free(out);
-			return (NULL);
-		}
+			return (set_free(out, i));
 		ft_strlcpy(out[i], str, len + 1);
 		i++;
 	}

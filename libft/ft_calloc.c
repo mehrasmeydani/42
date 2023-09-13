@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgardesh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:49:02 by mgardesh          #+#    #+#             */
-/*   Updated: 2023/09/06 13:50:12 by mgardesh         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:08:15 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 	if (nmemb * size == 0 || (nmemb * size) / size != nmemb)
 	{
-		nmemb = 1;
+		nmemb = 0;
 		size = 1;
 	}
 	if (size >= 1 && size <= 8)

@@ -14,7 +14,7 @@
 
 static size_t	find_start(char const *s1, char const *set)
 {
-	size_t 	find;
+	size_t	find;
 	size_t	i;
 
 	find = 0;
@@ -26,8 +26,8 @@ static size_t	find_start(char const *s1, char const *set)
 			if (set[i] == s1[find])
 			{
 				find++;
-				i = - 1;
-				continue;
+				i = -1;
+				continue ;
 			}
 		}
 		if (i == ft_strlen(set))
@@ -38,7 +38,7 @@ static size_t	find_start(char const *s1, char const *set)
 
 static int	find_end(char const *s1, char const *set)
 {
-	int 	find;
+	int		find;
 	size_t	i;
 
 	find = ft_strlen(s1) - 1;
@@ -52,8 +52,8 @@ static int	find_end(char const *s1, char const *set)
 				find--;
 				if (find == -1)
 					return (find);
-				i = - 1;
-				continue;
+				i = -1;
+				continue ;
 			}
 		}
 		if (i == ft_strlen(set))
@@ -67,12 +67,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	start;
 	int		end;
 
-	if(!s1 || !set)
+	if (!s1 || !set)
 		return ((char *)s1);
 	start = find_start(s1, set);
 	end = find_end(s1, set);
 	if (end < (int)start)
-		return(ft_substr(s1, end + 1, 0));
+		return (ft_substr(s1, end + 1, 0));
 	else
-		return(ft_substr(s1, start, end - start + 1));
+		return (ft_substr(s1, start, end - start + 1));
 }

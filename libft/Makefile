@@ -6,15 +6,21 @@
 #    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/27 22:04:26 by mgardesh          #+#    #+#              #
-#    Updated: 2023/09/14 00:05:29 by codespace        ###   ########.fr        #
+#    Updated: 2023/09/14 00:54:39 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC			= ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strchr.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strrchr.c ft_tolower.c ft_toupper.c ft_memchr.c ft_strncmp.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_strdup.c ft_calloc.c ft_strjoin.c ft_substr.c ft_strtrim.c ft_itoa.c ft_split.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
+SRC_B		= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c
+
 SRCS		= ${addprefix ${PRE}, ${SRC}}
 
+SRCS_B		= ${addprefix ${PRE}, ${SRC_B}}
+
 OBJS		= ${SRCS:.c=.o}
+
+OBJS_B		= ${SRCS_B:.c=.o}
 
 PRE			= ./
 
@@ -33,6 +39,7 @@ GCC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 
 all:			${NAME}
+
 .c.o:
 			${GCC} ${CFLAGS} -c -I ${HEAD} $< -o ${<:.c=.o}
 
@@ -46,10 +53,14 @@ clean:
 
 fclean:		clean
 			rm -f ${NAME}
+			rm -f ${OBJS_B}
 			rm -f libft.so
 			rm -f a.out
 
 re:			fclean all
+
+bonus:			${OBJS} $(OBJS_B)
+				ar rcs $(NAME) $(OBJS) $(OBJS_B)
 
 so:
 	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)

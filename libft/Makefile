@@ -6,7 +6,7 @@
 #    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/27 22:04:26 by mgardesh          #+#    #+#              #
-#    Updated: 2023/09/14 14:32:15 by codespace        ###   ########.fr        #
+#    Updated: 2023/09/15 10:24:02 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,5 @@ re:			fclean all
 
 bonus:			${OBJS} $(OBJS_B)
 				ar rcs $(NAME) $(OBJS) $(OBJS_B)
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS)
 
 .PHONY:		all clean fclean re

@@ -6,24 +6,20 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:25:17 by codespace         #+#    #+#             */
-/*   Updated: 2023/09/13 21:53:06 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/20 15:51:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_sep(char *charset, char c)
+static int	is_sep(char charset, char c)
 {
-	while (*charset)
-	{
-		if (*charset == c)
-			return (1);
-		charset++;
-	}
+	if (charset == c)
+		return (1);
 	return (0);
 }
 
-static int	count(char *str, char *charset)
+static int	count(char *str, char charset)
 {
 	int		len_sub;
 	int		len_sep;
@@ -47,7 +43,7 @@ static int	count(char *str, char *charset)
 	return (i);
 }
 
-static char	*skip(char *str, char *charset, int *len)
+static char	*skip(char *str, char charset, int *len)
 {
 	int	i;
 
@@ -71,29 +67,30 @@ static char	**set_free(char **out, int i)
 	return (NULL);
 }
 
-char	**ft_split(char *str, char c)
+char	**ft_split(char const *s, char c)
 {
 	int		len;
 	char	**out;
 	int		i;
+	int		a;
 	char	*str_temp;
 
-	str_temp = str;
+	str_temp = (char *)s;
 	len = 0;
-	i = 0;
-	if (str == NULL)
+	i = -1;
+	a = 0;
+	if (s == NULL)
 		return (NULL);
-	out = (char **)malloc((count(str_temp, &c) + 1) * sizeof(char *));
+	out = (char **)malloc((count(str_temp, c) + 1) * sizeof(char *));
 	if (!out)
 		return (out);
-	while (i < count(str_temp, &c))
+	while (++i < count(str_temp, c))
 	{
-		str = skip(&str[len], &c, &len);
+		a = (int)(skip((char *)(s + len + a), c, &len) - s);
 		out[i] = (char *)malloc((len + 1) * sizeof(char));
 		if (!out[i])
 			return (set_free(out, i));
-		ft_strlcpy(out[i], str, len + 1);
-		i++;
+		ft_strlcpy(out[i], (char *)(s + a), len + 1);
 	}
 	out[i] = NULL;
 	return (out);

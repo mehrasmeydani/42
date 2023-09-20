@@ -6,18 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:25:17 by codespace         #+#    #+#             */
-/*   Updated: 2023/09/20 15:51:49 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/20 16:09:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	is_sep(char charset, char c)
-{
-	if (charset == c)
-		return (1);
-	return (0);
-}
 
 static int	count(char *str, char charset)
 {
@@ -30,13 +23,13 @@ static int	count(char *str, char charset)
 	i = 0;
 	while (str[len_sub + len_sep])
 	{
-		while (is_sep(charset, str[len_sub + len_sep])
+		while ((charset == str[len_sub + len_sep])
 			&& str[len_sub + len_sep])
 			len_sep++;
-		if (!is_sep(charset, str[len_sub + len_sep])
+		if ((charset != str[len_sub + len_sep])
 			&& str[len_sub + len_sep])
 			i++;
-		while (!is_sep(charset, str[len_sub + len_sep])
+		while ((charset != str[len_sub + len_sep])
 			&& str[len_sub + len_sep])
 			len_sub++;
 	}
@@ -49,9 +42,9 @@ static char	*skip(char *str, char charset, int *len)
 
 	i = 0;
 	*len = 0;
-	while (is_sep(charset, *str) && *str)
+	while (charset == *str && *str)
 		str++;
-	while (!is_sep(charset, str[i]) && str[i])
+	while ((charset != str[i]) && str[i])
 	{
 		*len = *len + 1;
 		i++;

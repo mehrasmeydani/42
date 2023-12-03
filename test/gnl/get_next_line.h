@@ -33,6 +33,6 @@ char	*get_next_line(int fd);
 char	*readfile(int fd, char *tmp, char *reeded);
 char	*append(char *reeded, char *tmp);
 char	*line(char *reeded);
-char	*cut(char *reeded);
+char	*cut(char *reeded, char *next_line);
 
 #endif

@@ -22,14 +22,21 @@ char	*get_next_line(int fd)
 		return (NULL);
 	tmp = malloc(BUFFER_SIZE + 1);
 	if (tmp == NULL)
+	{
+		if (reeded)
+		{
+			free(reeded);
+			reeded = NULL;
+		}
 		return (NULL);
+	}
 	reeded = readfile(fd, tmp, reeded);
 	if (!reeded)
 		return (NULL);
 	next_line = line(reeded);
 	if (!next_line)
 		return (NULL);
-	reeded = cut(reeded);
+	reeded = cut(reeded, next_line);
 	return (next_line);
 }
 
@@ -69,6 +76,8 @@ char	*append(char *reeded, char *tmp)
 	if (reeded == 0)
 	{
 		reeded = ft_strdup(tmp);
+		if (!reeded && tmp)
+			free(tmp);
 		return (reeded);
 	}
 	all = ft_calloc(ft_strlen(reeded) + BUFFER_SIZE + 1, 1);
@@ -97,6 +106,11 @@ char	*line(char *reeded)
 	if (reeded[a] == '\0')
 	{
 		next_line = ft_strdup(reeded);
+		if (!next_line && reeded)
+		{
+			free(reeded);
+			reeded = NULL;
+		}
 		return (next_line);
 	}
 	next_line = ft_calloc(a + 2, 1);
@@ -120,7 +134,7 @@ char	*line(char *reeded)
 	return (next_line);
 }
 
-char	*cut(char *reeded)
+char	*cut(char *reeded, char *next_line)
 {
 	char	*tmp;
 	int		a;
@@ -136,11 +150,22 @@ char	*cut(char *reeded)
 	a++;
 	if (reeded[a] != '\0')
 		tmp = ft_strdup(&reeded[a]);
-	else
-	{
-		free(reeded);
-		return (NULL);
-	}
 	free(reeded);
+	reeded = NULL;
 	return (tmp);
+}
+
+int main(void)
+{
+	int fd = open("file.txt", O_RDONLY, O_CREAT);
+	char *str;
+
+	while(1)
+	{
+		str = get_next_line(fd);
+		if(!str)
+			break;
+		printf("%s", str);
+		free(str);
+	}
 }

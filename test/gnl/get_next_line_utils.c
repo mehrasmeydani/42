@@ -65,8 +65,10 @@ char	*ft_strdup(char *s)
 	if (!s)
 		return (NULL);
 	d = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (d == 0)
+	if (!d)
+	{
 		return (NULL);
+	}
 	a = 0;
 	while (s[a] != '\0')
 	{

@@ -83,8 +83,6 @@ int	ftt_printf(const char *s, va_list input_ptr)
 		if (*s == '%')
 		{
 			s++;
-			if (*s == ' ')
-				len += ft_putchar(' ');
 			len += ft_ph(&s, input_ptr);
 		}
 		else

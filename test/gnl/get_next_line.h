@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 10:12:35 by ajordan-          #+#    #+#             */
-/*   Updated: 2023/11/26 02:19:59 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/03 16:34:40 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 void	*ft_calloc(size_t nmemb, size_t size);
 int 	ft_strchr(char *s, char c);

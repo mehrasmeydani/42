@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by jdecorte          #+#    #+#             */
-/*   Updated: 2023/12/03 16:48:00 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/03 16:51:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_next_line(int fd)
 	reeded = readfile(fd, tmp, reeded);
 	if (!reeded)
 		return (NULL);
-	next_line = line(reeded);
+	next_line = line(reeded, next_line);
 	if (!next_line)
 		return (NULL);
 	reeded = cut(reeded);
@@ -84,7 +84,7 @@ char	*append(char *reeded, char *tmp)
 	return (all);
 }
 
-char	*line(char *reeded)
+char	*line(char *reeded, char *next_line)
 {
 	char	*next_line;
 	int		a;
@@ -104,6 +104,8 @@ char	*line(char *reeded)
 	{
 		if (reeded)
 			free(reeded);
+		if (next_line)
+			free(next_line);
 		return (NULL);
 	}
 	a = 0;

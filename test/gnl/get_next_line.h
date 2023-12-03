@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 10:12:35 by ajordan-          #+#    #+#             */
-/*   Updated: 2023/12/03 16:54:36 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/03 16:59:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_strcat(char *dst, char *src);
 char	*get_next_line(int fd);
 char	*readfile(int fd, char *tmp, char *reeded);
 char	*append(char *reeded, char *tmp);
-char	*line(char *reeded, char *next);
+char	*line(char *reeded);
 char	*cut(char *reeded);
 
 #endif

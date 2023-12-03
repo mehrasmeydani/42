@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by jdecorte          #+#    #+#             */
-/*   Updated: 2023/12/03 16:54:31 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/03 16:56:40 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ char	*line(char *reeded, char *next)
 	{
 		if (reeded)
 			free(reeded);
-		if (next_line)
-			free(next_line);
+		if (next)
+			free(next);
 		return (NULL);
 	}
 	a = 0;

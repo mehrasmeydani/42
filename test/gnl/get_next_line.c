@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by jdecorte          #+#    #+#             */
-/*   Updated: 2023/12/03 16:59:21 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/04 15:34:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,14 @@ char	*get_next_line(int fd)
 	static char	*reeded;
 	char		*next_line;
 	char		*tmp;
-	
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	tmp = malloc(BUFFER_SIZE + 1);
 	if (tmp == NULL)
 	{
-		if (reeded)
-		{
-			free(reeded);
-			reeded = NULL;
-		}
+		free(reeded);
+		reeded = NULL;
 		return (NULL);
 	}
 	reeded = readfile(fd, tmp, reeded);
@@ -36,7 +33,7 @@ char	*get_next_line(int fd)
 	next_line = line(reeded);
 	if (!next_line)
 		return (NULL);
-	reeded = cut(reeded, next_line);
+	reeded = cut(reeded);
 	return (next_line);
 }
 
@@ -46,16 +43,15 @@ char	*readfile(int fd, char *tmp, char *reeded)
 
 	charlen = 1;
 	if (!tmp)
-		return(NULL);
+		return (NULL);
 	while (charlen > 0 && ft_strchr(reeded, '\n') == 0)
 	{
 		charlen = read(fd, tmp, BUFFER_SIZE);
 		if (charlen < 0)
 		{
-			if (reeded)
-				free(reeded);
-			if (tmp) 
-				free(tmp);
+			free(reeded);
+			reeded = NULL;
+			free(tmp);
 			return (NULL);
 		}
 		if (charlen == 0)
@@ -84,12 +80,14 @@ char	*append(char *reeded, char *tmp)
 	if (all == NULL)
 	{
 		free(reeded);
+		reeded = NULL;
 		free(tmp);
 		return (NULL);
 	}
 	ft_strcat(all, reeded);
 	ft_strcat(all, tmp);
 	free(reeded);
+	reeded = NULL;
 	return (all);
 }
 
@@ -99,42 +97,29 @@ char	*line(char *reeded)
 	int		a;
 
 	a = 0;
-	if (!reeded)
-		return(NULL);
 	while (reeded[a] != '\0' && reeded[a] != '\n')
 		a++;
 	if (reeded[a] == '\0')
 	{
 		next_line = ft_strdup(reeded);
-		if (!next_line && reeded)
-		{
-			free(reeded);
-			reeded = NULL;
-		}
 		return (next_line);
 	}
-	next_line = ft_calloc(a + 2, 1);
+	next_line = malloc(a + 2);
 	if (next_line == NULL)
 	{
-		if (reeded)
-		{
-			free(reeded);
-			reeded = NULL;
-		}
+		free(reeded);
+		reeded = NULL;
 		return (NULL);
 	}
-	a = 0;
-	while (reeded[a] != '\n')
-	{
+	a = -1;
+	while (reeded[++a] != '\n')
 		next_line[a] = reeded[a];
-		a++;
-	}
 	next_line[a] = '\n';
 	next_line[a + 1] = '\0';
 	return (next_line);
 }
 
-char	*cut(char *reeded, char *next_line)
+char	*cut(char *reeded)
 {
 	char	*tmp;
 	int		a;
@@ -145,27 +130,19 @@ char	*cut(char *reeded, char *next_line)
 	if (reeded[a] == '\0')
 	{
 		free(reeded);
+		reeded = NULL;
 		return (NULL);
 	}
 	a++;
 	if (reeded[a] != '\0')
 		tmp = ft_strdup(&reeded[a]);
+	else
+	{
+		free(reeded);
+		reeded = NULL;
+		return (NULL);
+	}
 	free(reeded);
 	reeded = NULL;
 	return (tmp);
-}
-
-int main(void)
-{
-	int fd = open("file.txt", O_RDONLY, O_CREAT);
-	char *str;
-
-	while(1)
-	{
-		str = get_next_line(fd);
-		if(!str)
-			break;
-		printf("%s", str);
-		free(str);
-	}
 }

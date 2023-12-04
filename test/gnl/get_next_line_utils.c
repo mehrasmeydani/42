@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 15:15:01 by codespace         #+#    #+#             */
+/*   Updated: 2023/12/04 15:15:31 by codespace        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*ptr;
+	void			*ptr;
 	size_t			a;
 	unsigned char	*p;
 
@@ -35,7 +47,7 @@ void	ft_strcat(char *dst, char *src)
 	dst[a] = '\0';
 }
 
-int ft_strchr(char *s, char c)
+int	ft_strchr(char *s, char c)
 {
 	if (s == 0)
 		return (0);

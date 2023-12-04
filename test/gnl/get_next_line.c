@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by jdecorte          #+#    #+#             */
-/*   Updated: 2023/12/04 15:34:28 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/04 18:53:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	next_line = line(reeded);
 	if (!next_line)
-		return (NULL);
+		return (reeded = NULL, NULL);
 	reeded = cut(reeded);
 	return (next_line);
 }
@@ -102,13 +102,14 @@ char	*line(char *reeded)
 	if (reeded[a] == '\0')
 	{
 		next_line = ft_strdup(reeded);
+		if (!next_line)
+			free(reeded);
 		return (next_line);
 	}
 	next_line = malloc(a + 2);
 	if (next_line == NULL)
 	{
 		free(reeded);
-		reeded = NULL;
 		return (NULL);
 	}
 	a = -1;

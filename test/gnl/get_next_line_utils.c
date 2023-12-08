@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:15:01 by codespace         #+#    #+#             */
-/*   Updated: 2023/12/04 15:15:31 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/04 20:22:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,23 @@ size_t	ft_strlen(char *s)
 
 char	*ft_strdup(char *s)
 {
-	char	*d;
-	size_t	a;
+	char	*s2;
+	char	*src;
+	int		i;
 
-	if (!s)
+	i = 0;
+	src = (char *)s;
+	while (src[i])
+		i++;
+	s2 = (char *)malloc((i + 1) * sizeof(char));
+	if (s2 == NULL)
 		return (NULL);
-	d = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (!d)
+	i = 0;
+	while (src[i] != '\0')
 	{
-		return (NULL);
+		s2[i] = src[i];
+		i++;
 	}
-	a = 0;
-	while (s[a] != '\0')
-	{
-		d[a] = s[a];
-		a++;
-	}
-	d[a] = '\0';
-	return (d);
+	s2[i] = '\0';
+	return (s2);
 }

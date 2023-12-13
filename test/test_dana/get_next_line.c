@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:32:06 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 11:45:46 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 11:46:33 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*ft_get_feed(char *input_line)
 	if (!new_line)
 	{
 		free(input_line);
-		return (0);
+		return (NULL);
 	}
 	new_line[j] = '\0';
 	while (j--)

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:32:06 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 11:50:48 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 11:52:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ char	*get_next_line(int fd)
 	if (!buf)
 	{
 		input_line = NULL;
-		free(next_line);
 		return (0);
 	}
 	input_line = ft_read_case(fd, input_line, buf);

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:32:06 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 12:00:28 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 12:18:43 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 
-static char	*ft_get_feed(char *input_line)
+char	*ft_get_feed(char *input_line)
 {
 	int		i;
 	int		j;
@@ -39,7 +39,7 @@ static char	*ft_get_feed(char *input_line)
 	return (new_line);
 }
 
-static char	*ft_get_nl(char *input_line)
+char	*ft_get_nl(char *input_line)
 {
 	int		i;
 	int		j;
@@ -53,7 +53,10 @@ static char	*ft_get_nl(char *input_line)
 	i = ft_strchr(input_line, 'x');
 	next_line = (char *)malloc(sizeof(char) * (i + 1));
 	if (!next_line)
+	{
+		free(input_line);
 		return (0);
+	}
 	next_line[i] = '\0';
 	j = -1;
 	while (++j < i)
@@ -61,7 +64,7 @@ static char	*ft_get_nl(char *input_line)
 	return (next_line);
 }
 
-static char	*ft_read_case(int fd, char *input_line, char *buf)
+char	*ft_read_case(int fd, char *input_line, char *buf)
 {
 	int	bytes_read;
 
@@ -98,41 +101,30 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 	{
+		free(input_line);
 		input_line = NULL;
-		return (0);
+		return (NULL);
 	}
 	input_line = ft_read_case(fd, input_line, buf);
 	if (!input_line)
-	{
-		free(buf);
-		return (0);
-	}
+		return (NULL);
 	next_line = ft_get_nl(input_line);
 	if (!next_line)
-	{
-		input_line = NULL;
-		return (0);
-	}
+		return (input_line = NULL, NULL);
 	input_line = ft_get_feed(input_line);
-	if (!input_line)
-	{
-		free(buf);
-		free(next_line);
-		return (0);
-	}
 	return (next_line);
 }
 
-#include <fcntl.h>
-#include <stdio.h>
-int main(void)
-{
-	char *s;
-	int fd = open("file.txt", O_RDONLY);
-	do
-	{
-		s = get_next_line(fd);
-		printf("%s", s);
-		free(s);
-	} while (s);
-}
+// #include <fcntl.h>
+// #include <stdio.h>
+// int main(void)
+// {
+// 	char *s;
+// 	int fd = open("file.txt", O_RDONLY);
+// 	do
+// 	{
+// 		s = get_next_line(fd);
+// 		printf("%s", s);
+// 		free(s);
+// 	} while (s);
+// }

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:32:06 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 12:43:33 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 13:22:09 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,32 @@
 
 #include <stdio.h>
 
-char	*ft_get_feed(char *input_line)
+char	*cut(char *reeded)
 {
-	int		i;
-	int		j;
-	char	*new_line;
+	char	*tmp;
+	int		a;
 
-	j = 0;
-	if (!input_line)
-		return (0);
-	i = ft_strchr(input_line, 'x');
-	if (i == ft_len(input_line))
+	a = 0;
+	while (reeded[a] != '\0' && reeded[a] != '\n')
+		a++;
+	if (reeded[a] == '\0')
 	{
-		free(input_line);
+		free(reeded);
+		reeded = NULL;
 		return (NULL);
 	}
-	while (input_line[i + j])
-		j++;
-	new_line = (char *)malloc(sizeof(char) * (j + 1));
-	if (!new_line)
+	a++;
+	if (reeded[a] != '\0')
+		tmp = ft_strdup(&reeded[a]);
+	else
 	{
-		free(input_line);
+		free(reeded);
+		reeded = NULL;
 		return (NULL);
 	}
-	new_line[j] = '\0';
-	while (j--)
-		new_line[j] = input_line[i + j];
-	free(input_line);
-	return (new_line);
+	free(reeded);
+	reeded = NULL;
+	return (tmp);
 }
 
 char	*ft_get_nl(char *input_line)
@@ -116,20 +114,20 @@ char	*get_next_line(int fd)
 	next_line = ft_get_nl(input_line);
 	if (!next_line)
 		return (input_line = NULL, NULL);
-	input_line = ft_get_feed(input_line);
+	input_line = cut(input_line);
 	return (next_line);
 }
 
-#include <fcntl.h>
-#include <stdio.h>
-int main(void)
-{
-	char *s;
-	int fd = open("file.txt", O_RDONLY);
-	do
-	{
-		s = get_next_line(fd);
-		printf("%s", s);
-		free(s);
-	} while (s);
-}
+// #include <fcntl.h>
+// #include <stdio.h>
+// int main(void)
+// {
+// 	char *s;
+// 	int fd = open("file.txt", O_RDONLY);
+// 	do
+// 	{
+// 		s = get_next_line(fd);
+// 		printf("%s", s);
+// 		free(s);
+// 	} while (s);
+// }

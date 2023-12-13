@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:55:41 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 13:22:47 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 13:25:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,27 +105,4 @@ int ft_len(char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strdup(char *s)
-{
-	char	*s2;
-	char	*src;
-	int		i;
-
-	i = 0;
-	src = (char *)s;
-	while (src[i])
-		i++;
-	s2 = (char *)malloc((i + 1) * sizeof(char));
-	if (s2 == NULL)
-		return (NULL);
-	i = 0;
-	while (src[i] != '\0')
-	{
-		s2[i] = src[i];
-		i++;
-	}
-	s2[i] = '\0';
-	return (s2);
 }

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:32:06 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 11:54:07 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 12:00:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,15 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 	{
-		if (next_line)
-			free(next_line);
 		input_line = NULL;
 		return (0);
 	}
 	input_line = ft_read_case(fd, input_line, buf);
 	if (!input_line)
+	{
+		free(buf);
 		return (0);
+	}
 	next_line = ft_get_nl(input_line);
 	if (!next_line)
 	{

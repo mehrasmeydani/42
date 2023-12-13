@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:32:06 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/11/27 18:05:34 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 11:42:34 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,24 @@ char	*get_next_line(int fd)
 	}
 	input_line = ft_get_feed(input_line);
 	if (!input_line)
+	{
+		free(buf);
+		free(next_line);
 		return (0);
+	}
 	return (next_line);
+}
+
+#include <fcntl.h>
+#include <stdio.h>
+int main(void)
+{
+	char *s;
+	int fd = open("file.txt", O_RDONLY);
+	do
+	{
+		s = get_next_line(fd);
+		printf("%s", s);
+		free(s);
+	} while (s);
 }

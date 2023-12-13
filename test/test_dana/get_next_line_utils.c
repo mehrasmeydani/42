@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:55:41 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 12:33:28 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 13:16:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_strjoin(int bytes_read, char *input_line, char *buf)
 			free(buf);
 			return (0);
 		}
-		while (i < bytes_read)
+		while (i < ft_len(buf))
 		{
 			c_s3[i] = buf[i];
 			i++;

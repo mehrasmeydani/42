@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:32:06 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 11:49:33 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 11:50:48 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ char	*get_next_line(int fd)
 	next_line = ft_get_nl(input_line);
 	if (!next_line)
 	{
-		free(input_line);
 		input_line = NULL;
 		return (0);
 	}

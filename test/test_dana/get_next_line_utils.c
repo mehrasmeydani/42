@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dstolzle <dstolzle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:55:41 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/10/11 12:50:36 by dstolzle         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:21:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_strjoin_2(char *s1, char *s2, int i_size)
+char	*ft_strjoin_2(char *s1, char *s2, int i_size)
 {
 	char	*c_s3;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:55:41 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 13:18:06 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 13:19:33 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_strjoin(int bytes_read, char *input_line, char *buf)
 	len_input_line = 0;
 	if (!input_line)
 	{
-		c_s3 = malloc(sizeof(char) * (ft_len(buf) + 1));
+		c_s3 = malloc(sizeof(char) * (ft_len(buf) + 2));
 		if (!c_s3)
 		{
 			free(buf);

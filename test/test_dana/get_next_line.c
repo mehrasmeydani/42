@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:32:06 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 12:18:43 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 12:19:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,16 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-// #include <fcntl.h>
-// #include <stdio.h>
-// int main(void)
-// {
-// 	char *s;
-// 	int fd = open("file.txt", O_RDONLY);
-// 	do
-// 	{
-// 		s = get_next_line(fd);
-// 		printf("%s", s);
-// 		free(s);
-// 	} while (s);
-// }
+#include <fcntl.h>
+#include <stdio.h>
+int main(void)
+{
+	char *s;
+	int fd = open("file.txt", O_RDONLY);
+	do
+	{
+		s = get_next_line(fd);
+		printf("%s", s);
+		free(s);
+	} while (s);
+}

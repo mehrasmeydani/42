@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:32:06 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 12:19:49 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 12:37:00 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ char	*ft_get_feed(char *input_line)
 	if (!input_line)
 		return (0);
 	i = ft_strchr(input_line, 'x');
+	if (i == ft_len(input_line))
+	{
+		free(input_line);
+		return (NULL);
+	}
 	while (input_line[i + j])
 		j++;
 	new_line = (char *)malloc(sizeof(char) * (j + 1));

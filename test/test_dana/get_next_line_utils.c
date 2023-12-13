@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:55:41 by dstolzle          #+#    #+#             */
-/*   Updated: 2023/12/13 12:21:49 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/13 12:33:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,14 @@ int	ft_strchr(char *find_str, char c)
 		}
 		return (i);
 	}
+}
+
+int ft_len(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

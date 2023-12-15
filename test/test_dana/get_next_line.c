@@ -122,16 +122,16 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-// #include <fcntl.h>
-// #include <stdio.h>
-// int main(void)
-// {
-// 	char *s;
-// 	int fd = open("file.txt", O_RDONLY);
-// 	do
-// 	{
-// 		s = get_next_line(fd);
-// 		printf("%s", s);
-// 		free(s);
-// 	} while (s);
-// }
+#include <fcntl.h>
+#include <stdio.h>
+int main(void)
+{
+	char *s;
+	int fd = open("file.txt", O_RDONLY);
+	do
+	{
+		s = get_next_line(fd);
+		printf("%s", s);
+		free(s);
+	} while (s);
+}

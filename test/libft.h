@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:49:33 by mgardesh          #+#    #+#             */
-/*   Updated: 2024/01/22 14:19:32 by codespace        ###   ########.fr       */
+/*   Updated: 2023/12/15 15:10:09 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,11 @@ typedef struct s_list
 
 typedef struct s_push_swap
 {
-	char	**in;
-	char	**sort;
-	char	**stack_a;
-	char	**stack_b;
-	int		*out;
-	int		len_a;
-	int		len_b;
-	int		nr_el;
-	int		max_len;
+	int					num;
+	int					pos;
+	char				*org;
+	struct s_push_swap	*next;
+	
 }	t_push_swap;
 
 

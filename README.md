@@ -1,4 +1,4 @@
-All c projects are 100% percent success but please do not copy and only use these codes as inspiration
+All c projects are 100% percent success (42 vienna piscine july 2023) but please do not copy and only use these codes as inspiration
 
 ![Screenshot 2024-07-16 125831](https://github.com/user-attachments/assets/882fb9e3-67f6-4b16-84a6-cf79b23d57ef)
 
